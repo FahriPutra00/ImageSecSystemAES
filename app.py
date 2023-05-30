@@ -128,7 +128,16 @@ def main():
                     with col1:
                         st.image(decrypted_image, use_column_width=True)
                     with col2:
-                            st.download_button("Download Decoded Image", data=decrypted_image, file_name="decoded_image.png")
+                            download_format = st.radio("Select output format", ("PNG", "JPG", "JPEG", "TXT"))
+                            file_extension = download_format.lower()
+                            file_name = f"encrypted_image.{file_extension}"
+                            if file_extension == "png":
+                                mime_type = "image/png"
+                            elif file_extension == "jpg":
+                                mime_type = "image/jpeg"
+                            elif file_extension == "jpeg":
+                                mime_type = "image/jpeg"
+                            st.download_button("Download Decoded Image", data=decrypted_image, file_name=file_name, mime=mime_type)
 
 
 if __name__ == "__main__":
