@@ -148,7 +148,7 @@ def main():
                                     mime_type = "image/jpeg"
                                 st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
                 except ValueError as e:
-                    st.error(str(e))
+                    st.error("Dekripsi Gagal!, Silahkan cek kembali key yang anda masukkan")
 
 
 
