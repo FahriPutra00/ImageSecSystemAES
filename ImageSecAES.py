@@ -2,7 +2,6 @@ import streamlit as st
 import base64
 from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad, unpad
-from Cryptodome.Random import get_random_bytes
 from streamlit_option_menu import option_menu
 import warnings
 import hashlib
@@ -149,7 +148,15 @@ def main():
                                 st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
                 except ValueError as e:
                     st.error("Dekripsi Gagal!, Silahkan cek kembali key yang anda masukkan")
-
+    if selected == "about":
+        st.title("About")
+        st.write("This application was created by: Fahri Putra Herlambang")
+        st.subheader("Apa Itu Base64?")
+        st.markdown("""
+        Algoritma Base64 adalah sebuah metode encoding yang mengubah data biner menjadi format teks dengan menggunakan kumpulan karakter khusus yang terdiri 
+        dari huruf-huruf alfanumerik (A-Z, a-z), angka (0-9), serta dua karakter khusus (+ dan /). Tujuan utama dari algoritma ini adalah untuk mewakili data 
+        biner dalam bentuk teks agar dapat diunggah, ditransmisikan, atau disimpan dengan lebih mudah.
+                    """)
 
 
 if __name__ == "__main__":
