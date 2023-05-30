@@ -115,7 +115,11 @@ def main():
         file = st.file_uploader("Select an encoded file", type=["txt","png", "jpg", "jpeg"], key="file_uploader", 
                                 help="Only .txt, .png, .jpg, .jpeg files allowed", accept_multiple_files=False)
         encoded_text = st.text_area("Enter the encoded text")
-        key = st.text_input("Enter decryption key:")
+        col1, col2 = st.columns(2)
+        with col1:
+            key = st.text_input("Enter decryption key:")
+        with col2:
+            download_format = st.radio("Select output format", ("PNG", "JPG", "JPEG"))
         if file is not None or encoded_text:
             if file is not None:
                 encoded_text = file.read().decode('utf-8')
@@ -128,7 +132,6 @@ def main():
                     with col1:
                         st.image(decrypted_image, use_column_width=True)
                     with col2:
-                        download_format = st.radio("Select output format", ("PNG", "JPG", "JPEG"))
                         if download_format:
                             file_extension = download_format.lower()
                             file_name_dec = f"encrypted_image.{file_extension}"
