@@ -105,7 +105,7 @@ def main():
                             else:
                                 mime_type = None
 
-                            if mime_type is not None:
+                            if mime_type is not None and file_extension != "txt":
                                 encoded_data_bytes = encoded_data.encode('ascii')
                                 st.download_button(rf"Download Encoded Image (.{download_format})", data=encoded_data_bytes,
                                                 file_name=file_name, mime=mime_type)
@@ -141,7 +141,7 @@ def main():
                                 mime_type = "image/jpeg"
                             elif file_extension == "jpeg":
                                 mime_type = "image/jpeg"
-                        st.download_button("Download Decoded Image", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
+                        st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
 
 
 if __name__ == "__main__":
