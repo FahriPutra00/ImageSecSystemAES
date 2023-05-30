@@ -95,20 +95,24 @@ def main():
                             file_name = f"encrypted_image.{file_extension}"
                             if file_extension == "png":
                                 mime_type = "image/png"
+                                encoded_data_bytes = encoded_data.encode('ascii')
+                                st.download_button(rf"Download Encoded Image (.{download_format})", data=encoded_data_bytes,
+                                                file_name=file_name, mime=mime_type)
                             elif file_extension == "jpg":
                                 mime_type = "image/jpeg"
+                                encoded_data_bytes = encoded_data.encode('ascii')
+                                st.download_button(rf"Download Encoded Image (.{download_format})", data=encoded_data_bytes,
+                                                file_name=file_name, mime=mime_type)
                             elif file_extension == "jpeg":
                                 mime_type = "image/jpeg"
+                                encoded_data_bytes = encoded_data.encode('ascii')
+                                st.download_button(rf"Download Encoded Image (.{download_format})", data=encoded_data_bytes,
+                                                file_name=file_name, mime=mime_type)
                             elif file_extension == "txt":
                                 save_text_to_file(encoded_data, "EncodedImage.txt")
                                 st.download_button(rf"Download Encoded Image (.{download_format})", data=open("EncodedImage.txt", 'rb').read(), file_name="EncodedImage.txt")
                             else:
                                 mime_type = None
-
-                            if mime_type is not None and file_extension != "txt":
-                                encoded_data_bytes = encoded_data.encode('ascii')
-                                st.download_button(rf"Download Encoded Image (.{download_format})", data=encoded_data_bytes,
-                                                file_name=file_name, mime=mime_type)
 
     if selected =='Decoding Image':
         st.title("Decrypt Image using BASE64 and AES")
