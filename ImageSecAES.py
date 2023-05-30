@@ -129,23 +129,27 @@ def main():
                 encoded_text = file.read().decode('utf-8')
             if st.button("Decrypt"):
                 key = key.encode('utf-8')  # Convert key to bytes
-                decrypted_image = decrypt_image(encoded_text, key)
-                st.success("Text decrypted successfully!")
-                with st.container():
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.image(decrypted_image, use_column_width=True)
-                    with col2:
-                        if download_format:
-                            file_extension = download_format.lower()
-                            file_name_dec = f"encrypted_image.{file_extension}"
-                            if file_extension == "png":
-                                mime_type = "image/png"
-                            elif file_extension == "jpg":
-                                mime_type = "image/jpeg"
-                            elif file_extension == "jpeg":
-                                mime_type = "image/jpeg"
-                        st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
+                try:
+                    decrypted_image = decrypt_image(encoded_text, key)
+                    st.success("Text decrypted successfully!")
+                    with st.container():
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            st.image(decrypted_image, use_column_width=True)
+                        with col2:
+                            if download_format:
+                                file_extension = download_format.lower()
+                                file_name_dec = f"encrypted_image.{file_extension}"
+                                if file_extension == "png":
+                                    mime_type = "image/png"
+                                elif file_extension == "jpg":
+                                    mime_type = "image/jpeg"
+                                elif file_extension == "jpeg":
+                                    mime_type = "image/jpeg"
+                                st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
+                except ValueError as e:
+                    st.error(str(e))
+
 
 
 if __name__ == "__main__":
