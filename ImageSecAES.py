@@ -148,7 +148,7 @@ def main():
                                 st.download_button(rf"Download Decoded {download_format}", data=decrypted_image, file_name=file_name_dec, mime=mime_type)
                 except ValueError as e:
                     st.error("Dekripsi Gagal!, Silahkan cek kembali key yang anda masukkan")
-    if selected == "about":
+    if selected == "About":
         st.title("About")
         st.write("This application was created by: Fahri Putra Herlambang")
         st.subheader("Apa Itu Base64?")
